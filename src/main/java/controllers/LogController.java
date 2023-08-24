@@ -1,25 +1,27 @@
 
 package controllers;
 
-import domain.Log;
-import domain.Usuario;
-import java.time.LocalDateTime;
+import services.LogService;
 
 
 public class LogController {
     
-    private static LogController instancia;
+    private static LogController instance;
+    private LogService logService;
 
     private LogController() {}
     
     public static LogController getInstance(){
-        if (instancia == null) instancia = new LogController();
-        return instancia;
+        if (instance == null) instance = new LogController();
+        return instance;
     }
-    
-    
-    public Log gerarLog (Usuario usuario){
-        return new Log(usuario.getNome(), LocalDateTime.now());
+
+    public LogService getLogService() {
+        return logService;
+    }
+
+    public void setLogService(LogService logService) {
+        this.logService = logService;
     }
     
 }

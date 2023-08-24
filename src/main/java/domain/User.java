@@ -1,25 +1,23 @@
-
 package domain;
 
 import java.util.Objects;
 
+public class User {
 
-public class Usuario {
-    
-    private String nome;
+    private String name;
 
-    public Usuario(String nome) {
-        this.nome = nome;
+    public User(String name) {
+        this.name = name;
     }
 
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.nome);
+        hash = 53 * hash + Objects.hashCode(this.name);
         return hash;
     }
 
@@ -34,13 +32,13 @@ public class Usuario {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Usuario other = (Usuario) obj;
-        return Objects.equals(this.nome, other.nome);
+        final User other = (User) obj;
+        return Objects.equals(this.name, other.name);
     }
-    
+
     @Override
     public String toString() {
-        return nome;
+        return name;
     }
-    
+
 }

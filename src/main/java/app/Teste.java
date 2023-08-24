@@ -1,18 +1,13 @@
 package app;
 
-import controllers.LogController;
-import controllers.UsuarioController;
-import domain.Log;
-import domain.Usuario;
-import java.util.Scanner;
-import services.CounterService;
-import services.PrintService;
-import services.UsuarioService;
-import services.WriterService;
+import controllers.*;
+import domain.*;
+import java.util.*;
+import services.*;
 
 public class Teste {
 
-    private static String caminho = "C:\\Users\\Acer\\Documents\\NetBeansProjects\\Exercicios\\src\\main\\java\\domain\\logs.txt";
+    private static String path = "C:\\Users\\Acer\\Documents\\NetBeansProjects\\Exercicios\\src\\main\\java\\domain\\logs.txt";
     private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -20,9 +15,10 @@ public class Teste {
         int opc = 1;
 
         UsuarioController usuarioController = UsuarioController.getInstance();
-        usuarioController.setUsuarioService(new UsuarioService());
+        usuarioController.setUserService(new UserService());
 
         LogController logController = LogController.getInstance();
+        logController.setLogService(new LogService());
 
         enquanto:
         while (opc > 0 && opc < 3) {
@@ -36,13 +32,13 @@ public class Teste {
 
                 switch (opc) {
                     case 1:
-                        Usuario usuario = usuarioController.criarUsuario();
-                        Log log = logController.gerarLog(usuario);
-                        WriterService.novoLog(log, caminho);
+                        User user = usuarioController.getUserService().createUser();
+                        Log log = logController.getLogService().createLog(user);
+                        WriterService.novoLog(log, path);
                         break;
 
                     case 2:
-                        int count = CounterService.countLines(caminho);
+                        int count = CounterService.countLines(path);
                         PrintService.printCount(count);
                         break;
 

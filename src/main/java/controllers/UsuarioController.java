@@ -1,17 +1,12 @@
 
 package controllers;
 
-import domain.Usuario;
-import exceptions.UsuarioException;
-import java.util.*;
-import services.UsuarioService;
+import services.UserService;
 
 public class UsuarioController {
     
     private static UsuarioController instance;
-    private UsuarioService usuarioService;
-    
-    private Set<Usuario> usuarios = new HashSet<>();
+    private UserService userService;
 
     private UsuarioController() {}
     
@@ -20,27 +15,12 @@ public class UsuarioController {
         return instance;
     }
 
-    public UsuarioService getUsuarioService() {
-        return usuarioService;
+    public UserService getUserService() {
+        return userService;
     }
     
-    public void setUsuarioService(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
-    }
-    
-    public Usuario criarUsuario (){
-        Usuario usuario = getUsuarioService().novoUsuario();
-        boolean adicionou = addUsuario(usuario);
-        if (!adicionou) throw new UsuarioException("Usuário já existente!");
-        return usuario;
-    }
-    
-    public Set<Usuario> getUsuarios(){
-        return Collections.unmodifiableSet(usuarios);
-    }
-    
-    private boolean addUsuario (Usuario usuario){
-        return usuarios.add(usuario);
+    public void setUserService(UserService usuarioService) {
+        this.userService = usuarioService;
     }
     
 }
