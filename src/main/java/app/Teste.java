@@ -29,16 +29,19 @@ public class Teste {
 
             try {
                 opc = Integer.parseInt(sc.next());
-
+                int old = 0;
+                
                 switch (opc) {
                     case 1:
                         User user = usuarioController.getUserService().createUser();
                         Log log = logController.getLogService().createLog(user);
                         WriterService.novoLog(log, path);
+                        old++;
                         break;
 
                     case 2:
                         int count = CounterService.countLines(path);
+                        if (old == 0) count = old;
                         PrintService.printCount(count);
                         break;
 
